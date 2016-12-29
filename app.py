@@ -44,7 +44,7 @@ def index():
         session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
         raw_data = session.get(api_url)
                          
-        if chartct >= 0: pass
+        if chartct > 0: pass
         else:
             return render_template('selection_error.html')
                          
@@ -53,7 +53,7 @@ def index():
         try:
             stockdf = DataFrame(data=jsondata['data'],columns=jsondata['column_names'])
         #stockdf
-            return render_template('ticker_error.html')
+            return render_template('no_error.html')
         except KeyError:
             return render_template('ticker_error.html')
         
