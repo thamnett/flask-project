@@ -53,7 +53,7 @@ def index():
         try:
             stockdf = DataFrame(data=jsondata['data'],columns=jsondata['column_names'])
         #stockdf
-            return render_template('selection_error.html')
+            return render_template('ticker_error.html')
         except KeyError:
             return render_template('ticker_error.html')
         
