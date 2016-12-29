@@ -23,35 +23,35 @@ def index():
     else:
         # request was a POST
         app.vars['tick'] = request.form['ticksymb']
-        if request.form['close']:
-            app.vars['close'] = request.form['close']
-            chartct = chartct + 1
-        if request.form['adjclose']:    
-            app.vars['adjclose'] = request.form['adjclose']
-            chartct = chartct + 1
-        if request.form['open']:    
-            app.vars['open'] = request.form['open']
-            chartct = chartct + 1
-        if request.form['adjopen']:
+    if request.form['close']:
+        app.vars['close'] = request.form['close']
+        chartct = chartct + 1
+    if request.form['adjclose']:    
+        app.vars['adjclose'] = request.form['adjclose']
+        chartct = chartct + 1
+    if request.form['open']:    
+        app.vars['open'] = request.form['open']
+        chartct = chartct + 1
+    if request.form['adjopen']:
         app.vars['adjopen'] = request.form['adjopen']
-            chartct = chartct + 1
+        chartct = chartct + 1
         
-        api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/%s.json' % 'GOOG'
-        session = requests.Session()
-        session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
-        raw_data = session.get(api_url): pass
+    api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/%s.json' % 'GOOG'
+    session = requests.Session()
+    session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
+    raw_data = session.get(api_url): pass
                          
-        if chartct > 0: pass
-        else:
-            return render_template('selection_error.html')
+    if chartct > 0: pass
+    else:
+        return render_template('selection_error.html')
                          
-        jsondata = json.loads(raw_data.text)
+    jsondata = json.loads(raw_data.text)
 
-        try:
-            stockdf = DataFrame(data=jsondata['data'],columns=jsondata['column_names'])
-            stockdf
-        except KeyError:
-            return render_template('ticker_error.html')
+    try:
+        stockdf = DataFrame(data=jsondata['data'],columns=jsondata['column_names'])
+        stockdf
+    except KeyError:
+        return render_template('ticker_error.html')
         
                          
        # plot = figure(tools=TOOLS,
