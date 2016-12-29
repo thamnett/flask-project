@@ -22,19 +22,19 @@ def index():
         return render_template('index.html')
     else:
         # request was a POST
-        pass#app.vars['tick'] = request.form['ticksymb']
-    if 'close' in request.form.values():
-        #app.vars['close'] = request.form['close']
+        app.vars['tick'] = request.form['ticksymb']
+    if 'close' in request.form['checked']:
+        app.vars['close'] = 1
         chartct = chartct + 1
-    #if 'adjclose' in request.form.values():  
-        #app.vars['adjclose'] = request.form['adjclose']
-    #   chartct = chartct + 1
-    #if 'open' in request.form.values():    
-        #app.vars['open'] = request.form['open']
-    #  chartct = chartct + 1
-    #if 'adjopen' in request.form.values():
-        #app.vars['adjopen'] = request.form['adjopen']
-    #   chartct = chartct + 1
+    if 'adjclose' in request.form['checked']:  
+        app.vars['adjclose'] = 1
+        chartct = chartct + 1
+    if 'open' in request.form['checked']:    
+        app.vars['open'] = 1
+        chartct = chartct + 1
+    if 'adjopen' in request.form['checked']:
+        app.vars['adjopen'] = 1
+        chartct = chartct + 1
         
     api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/GOOG.json' #% 'GOOG'
     session = requests.Session()
