@@ -36,7 +36,7 @@ def index():
         #app.vars['adjopen'] = request.form['adjopen']
         chartct = chartct + 1
         
-    api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/%s.json' % 'GOOG'
+    api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/GOOG.json' #% 'GOOG'
     session = requests.Session()
     session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
     raw_data = session.get(api_url)
@@ -49,7 +49,7 @@ def index():
 
     try:
         stockdf = DataFrame(data=jsondata['data'],columns=jsondata['column_names'])
-        stockdf
+        #stockdf
         return render_template('selection_error.html')
     except KeyError:
         return render_template('ticker_error.html')
