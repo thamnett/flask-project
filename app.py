@@ -26,16 +26,20 @@ def index():
     if 'close' in request.form['checked']:
         app.vars['close'] = 1
         chartct = chartct + 1
+    else: pass
     if 'adjclose' in request.form['checked']:  
         app.vars['adjclose'] = 1
         chartct = chartct + 1
+    else: pass
     if 'open' in request.form['checked']:    
         app.vars['open'] = 1
         chartct = chartct + 1
+    else: pass
     if 'adjopen' in request.form['checked']:
         app.vars['adjopen'] = 1
         chartct = chartct + 1
-        
+    else: pass
+    
     api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/GOOG.json' #% 'GOOG'
     session = requests.Session()
     session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
