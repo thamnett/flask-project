@@ -22,7 +22,7 @@ def index():
         return render_template('index.html')
     else:
         # request was a POST
-        #app.vars['tick'] = request.form['ticksymb']
+        pass#app.vars['tick'] = request.form['ticksymb']
     if 'close' in request.form.values():
         #app.vars['close'] = request.form['close']
         chartct = chartct + 1
