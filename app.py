@@ -39,7 +39,7 @@ def index():
             app.vars['adjopen'] = 1
             chartct = chartct + 1
     
-        api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/GOOG.json' #% 'GOOG'
+        api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/%s.json' % app.vars['tick']
         session = requests.Session()
         session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
         raw_data = session.get(api_url)
