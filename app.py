@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.debug = True
 
 app.vars = {}
-chartct = 0
+
 
 @app.route('/', methods=['GET','POST'])
 def main():
@@ -25,6 +25,7 @@ def index():
     else:
         # request was a POST
         app.vars['tick'] = request.form['ticksymb']
+        chartct = 0
         if 'close' in request.form:
             app.vars['close'] = 1
             chartct = chartct + 1
