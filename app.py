@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.vars = {}
 chartct = 0
 
-@app.route('/', methods=['GET,'POST'])
+@app.route('/', methods=['GET'])
 def main():
     return redirect('/index')
 
