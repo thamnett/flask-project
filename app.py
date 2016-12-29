@@ -22,18 +22,18 @@ def index():
         return render_template('index.html')
     else:
         # request was a POST
-        app.vars['tick'] = request.form['ticksymb']
+        #app.vars['tick'] = request.form['ticksymb']
     if 'close' in request.form.values():
-        app.vars['close'] = request.form['close']
+        #app.vars['close'] = request.form['close']
         chartct = chartct + 1
     if 'adjclose' in request.form.values():  
-        app.vars['adjclose'] = request.form['adjclose']
+        #app.vars['adjclose'] = request.form['adjclose']
         chartct = chartct + 1
     if 'open' in request.form.values():    
-        app.vars['open'] = request.form['open']
+        #app.vars['open'] = request.form['open']
         chartct = chartct + 1
     if 'adjopen' in request.form.values():
-        app.vars['adjopen'] = request.form['adjopen']
+        #app.vars['adjopen'] = request.form['adjopen']
         chartct = chartct + 1
         
     api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/%s.json' % 'GOOG'
@@ -50,6 +50,7 @@ def index():
     try:
         stockdf = DataFrame(data=jsondata['data'],columns=jsondata['column_names'])
         stockdf
+        return render_template('selection_error.html')
     except KeyError:
         return render_template('ticker_error.html')
         
