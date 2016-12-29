@@ -9,6 +9,8 @@ import requests
 
 app = Flask(__name__)
 
+app.debug = True
+
 app.vars = {}
 chartct = 0
 
