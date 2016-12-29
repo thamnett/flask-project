@@ -23,16 +23,16 @@ def index():
     else:
         # request was a POST
         app.vars['tick'] = request.form['ticksymb']
-    if request.form['close']:
+    if 'close' in request.form.values():
         app.vars['close'] = request.form['close']
         chartct = chartct + 1
-    if request.form['adjclose']:    
+    if 'adjclose' in request.form.values():  
         app.vars['adjclose'] = request.form['adjclose']
         chartct = chartct + 1
-    if request.form['open']:    
+    if 'open' in request.form.values():    
         app.vars['open'] = request.form['open']
         chartct = chartct + 1
-    if request.form['adjopen']:
+    if 'adjopen' in request.form.values():
         app.vars['adjopen'] = request.form['adjopen']
         chartct = chartct + 1
         
