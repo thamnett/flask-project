@@ -23,9 +23,9 @@ def index():
     else:
         # request was a POST
         pass#app.vars['tick'] = request.form['ticksymb']
-    #if 'close' in request.form.values():
+    if 'close' in request.form.values():
         #app.vars['close'] = request.form['close']
-    #    chartct = chartct + 1
+        chartct = chartct + 1
     #if 'adjclose' in request.form.values():  
         #app.vars['adjclose'] = request.form['adjclose']
     #   chartct = chartct + 1
@@ -41,7 +41,7 @@ def index():
     session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
     raw_data = session.get(api_url)
                          
-    if chartct > 0: pass
+    if chartct >= 0: pass
     else:
         return render_template('selection_error.html')
                          
