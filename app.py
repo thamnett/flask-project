@@ -36,7 +36,7 @@ def index():
             app.vars['open'] = 'Open'
             chartct = chartct + 1
         if 'adjopen' in request.form:
-            app.vars['adjopen'] = 'Adj.Open'
+            app.vars['adjopen'] = 'Adj. Open'
             chartct = chartct + 1
     
         api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/%s.json' % ticksymb
