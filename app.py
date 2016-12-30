@@ -15,7 +15,6 @@ app.debug = True
 
 app.vars = {}
 
-
 @app.route('/', methods=['GET','POST'])
 def main():
     return redirect('/index')
@@ -28,13 +27,13 @@ def index():
         # request was a POST
         ticksymb = request.form['ticksymb']
         chartct = 0
-        if 'close' in request.form:
+        if 'rawclose' in request.form:
             app.vars['close'] = 'Close'
             chartct = chartct + 1
         if 'adjclose' in request.form:  
             app.vars['adjclose'] = 'Adj. Close'
             chartct = chartct + 1
-        if 'open' in request.form:    
+        if 'rawopen' in request.form:    
             app.vars['open'] = 'Open'
             chartct = chartct + 1
         if 'adjopen' in request.form:
@@ -45,8 +44,7 @@ def index():
         session = requests.Session()
         session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
         raw_data = session.get(api_url)
-                         
-                         
+                  
         jsondata = json.loads(raw_data.text)
 
         try:
@@ -85,7 +83,7 @@ def index():
                    line_width=5,legend=col_list[i])
                          
         script, div = components(plot)
-        return render_template('graph.html', script=script, div=div)
+        return render_template('graph.html', script=script, div=div, tick=ticksymb)
 
                          
 if __name__ == '__main__':
