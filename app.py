@@ -59,21 +59,30 @@ def index():
         else:
             return render_template('selection_error.html')
         
+        stockdf['Date'] = to_datetime(stockdf['Date'], format='%Y-%m-%d')
+        
         stockdf = stockdf.set_index('Date')
         
         stockdf = stockdf.iloc[:21]
         
-        col_list = ['Close','Open']
+        stockdf = stockdf.iloc[::-1]
+        
+        col_list = []
             
-        #for key in app.vars:
-        #    col_list.append(app.vars[key])
+        for key in app.vars:
+            col_list.append(app.vars[key])
         
         stockdf = stockdf.ix[col_list]
         
         numlines=len(stockdf.columns)
         mypalette=Spectral11[0:numlines]
         
-        plot = TimeSeries(stockdf,  xlabel='Date', ylabel='Price', title="GOOG Price Chart", color=mypalette)
+        plot = figure(title='Data from Quandle WIKI set', x_axis_label='date', 
+                   x_axis_type="datetime") 
+
+        for i in range(numlines):
+            plot.line(x=stockdf.index.values,y=stockdf.ix[:,i],line_color=mypalette[i],
+                   line_width=5,legend=col_list[i])
                          
         script, div = components(plot)
         return render_template('no_error.html', script=script, div=div)
