@@ -61,7 +61,7 @@ def index():
         
         stockdf = stockdf.set_index('Date')
         
-        stockdf = stockdf.iloc[:30]
+        stockdf = stockdf.iloc[:21]
         
         col_list = []
             
@@ -76,7 +76,7 @@ def index():
         plot = TimeSeries(stockdf,  xlabel='Date', ylabel='Price', title="GOOG Price Chart", color=mypalette)
                          
         script, div = components(plot)
-        return render_template('graph.html', script=script, div=div)
+        return render_template('no_error.html', script=script, div=div)
 
                          
 if __name__ == '__main__':
