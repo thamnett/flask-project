@@ -63,10 +63,10 @@ def index():
         
         stockdf = stockdf.iloc[:21]
         
-        col_list = []
+        col_list = ['Close','Open']
             
-        for key in app.vars:
-            col_list.append(app.vars[key])
+        #for key in app.vars:
+        #    col_list.append(app.vars[key])
         
         stockdf = stockdf.ix[col_list]
         
