@@ -85,7 +85,7 @@ def index():
                    line_width=5,legend=col_list[i])
                          
         script, div = components(plot)
-        return render_template('no_error.html', script=script, div=div)
+        return render_template('graph.html', script=script, div=div)
 
                          
 if __name__ == '__main__':
