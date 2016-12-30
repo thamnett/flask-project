@@ -13,8 +13,6 @@ app = Flask(__name__)
 
 app.debug = True
 
-app.vars = {}
-
 @app.route('/', methods=['GET','POST'])
 def main():
     return redirect('/index')
@@ -27,6 +25,7 @@ def index():
         # request was a POST
         ticksymb = request.form['ticksymb']
         chartct = 0
+        app.vars = {}
         if 'rawclose' in request.form:
             app.vars['close'] = 'Close'
             chartct = chartct + 1
