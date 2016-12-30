@@ -72,7 +72,7 @@ def index():
         for key in app.vars:
             col_list.append(app.vars[key])
         
-        stockdf = stockdf.ix[col_list]
+        stockdf = stockdf.ix[:,col_list]
         
         numlines=len(stockdf.columns)
         mypalette=Spectral11[0:numlines]
